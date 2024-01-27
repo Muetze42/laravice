@@ -1,0 +1,10 @@
+/.fleet
+/.idea
+/.vscode
+/node_modules
+/vendor
+/**/.fleet
+/**/.idea
+/**/.vscode
+/**/node_modules
+/**/vendor

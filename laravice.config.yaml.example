@@ -1,0 +1,3 @@
+# Determine wich packages should be enabled
+packages:
+  spatie/laravel-pdf: true

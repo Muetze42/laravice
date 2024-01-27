@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Services\AbstractService;
+
+class {{ class }} extends AbstractService
+{
+    /**
+     * Determine the required packages for this service.
+     */
+    public static function requiredPackages(): array|string
+    {
+        return ['vendor/package'];
+    }
+}
