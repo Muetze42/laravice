@@ -23,8 +23,6 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Register the application filesystem managers.
-     *
-     * @return void
      */
     protected function registerManagers(): void
     {

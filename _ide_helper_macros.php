@@ -4,7 +4,7 @@
 // phpcs:ignoreFile
 
 /**
- * Manuell created helper file for macros
+ * Manuell created helper file for macros.
  */
 
 namespace Illuminate\Contracts\Routing {
@@ -45,4 +45,3 @@ namespace Illuminate\Contracts\Routing {
         }
     }
 }
-

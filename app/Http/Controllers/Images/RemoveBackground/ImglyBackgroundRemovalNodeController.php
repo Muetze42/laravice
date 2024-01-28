@@ -18,7 +18,7 @@ class ImglyBackgroundRemovalNodeController extends Controller
         $request->validate([
             'image' => ['required', File::image()],
             //'quality' => 'nullable|numeric|between:0.01,1',
-            'format' => 'nullable|in:png,jpg,jpeg,webp'
+            'format' => 'nullable|in:png,jpg,jpeg,webp',
         ]);
 
         $image = $request->file('image');

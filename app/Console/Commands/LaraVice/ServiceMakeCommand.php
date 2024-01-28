@@ -27,7 +27,7 @@ class ServiceMakeCommand extends GeneratorCommand
      * Execute the console command.
      *
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-    */
+     */
     public function handle(): void
     {
         parent::handle();
@@ -70,8 +70,6 @@ class ServiceMakeCommand extends GeneratorCommand
 
     /**
      * Get the desired class name from the input.
-     *
-     * @return string
      */
     protected function getNameInput(): string
     {

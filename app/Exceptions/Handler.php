@@ -34,9 +34,6 @@ class Handler extends ExceptionHandler
      * Determine if the exception handler response should be JSON.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \Throwable               $e
-     *
-     * @return bool
      */
     protected function shouldReturnJson($request, Throwable $e): bool
     {
@@ -47,9 +44,6 @@ class Handler extends ExceptionHandler
      * Convert an authentication exception into a response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function unauthenticated($request, AuthenticationException $exception): JsonResponse
     {

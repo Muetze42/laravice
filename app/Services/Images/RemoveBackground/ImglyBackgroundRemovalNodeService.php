@@ -3,7 +3,7 @@
 namespace App\Services\Images\RemoveBackground;
 
 use App\Services\AbstractService;
-use Illuminate\Support\Facades\Process;
+use App\Support\Facades\NodeProcess;
 
 class ImglyBackgroundRemovalNodeService extends AbstractService
 {
@@ -22,8 +22,8 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
 
     public function __construct(string $relativePath, string $format)
     {
-        $result = Process::path(base_path('packages/imgly-background-removal-node'))
-            ->run([config('process.commands.node'), 'script.js', $relativePath, $format]);
+        $result = NodeProcess::path(base_path('packages/imgly-background-removal-node'))
+            ->run(['script.js', $relativePath, $format]);
 
         $this->output = $result->successful() ? trim($result->output()) : $result->errorOutput();
     }
