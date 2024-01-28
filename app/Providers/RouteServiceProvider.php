@@ -11,22 +11,18 @@ use Illuminate\Support\Facades\Route;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
-     * The path to your application's "home" route.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/';
-
-    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request): Limit {
-            return Limit::perMinute(300)->by($request->user()?->id ?: $request->ip());
-        });
+        $apiLimit = (int) config('rate-limiter.api', 60);
+        if ($apiLimit) {
+            RateLimiter::for(
+                'api',
+                fn (Request $request): Limit => Limit::perMinute($apiLimit)
+                    ->by($request->user()?->id ?: $request->ip())
+            );
+        }
 
         $this->routes(function () {
             Route::middleware(['api', 'auth:sanctum'])

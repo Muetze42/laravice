@@ -19,6 +19,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Rate Limiter Cache Store
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default cache connection that gets used while
+    | using this caching library for the Rate Limiter.
+    | See: https://laravel.com/docs/10.x/rate-limiting#cache-configuration
+    |
+    */
+
+    'limiter' => env('LIMITER_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
+
+    /*
+    |--------------------------------------------------------------------------
     | Cache Stores
     |--------------------------------------------------------------------------
     |
@@ -108,7 +121,7 @@ return [
 
     'prefix' => env(
         'CACHE_PREFIX',
-        Str::slug(env('APP_NAME', 'laravel'), separator: '_') . '_cache_'
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache_'
     ),
 
 ];
