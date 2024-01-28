@@ -33,7 +33,7 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
      */
     public function successful(): bool
     {
-        return str_contains($this->output, 'Image saved to ');
+        return str_starts_with($this->lastOutput(), 'Image saved to ');
     }
 
     /**
@@ -49,7 +49,7 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
      */
     public function targetPath(): string
     {
-        return last(explode(' ', $this->output));
+        return last(explode(' ', $this->lastOutput()));
     }
 
     /**
@@ -58,5 +58,13 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
     public function output(): string
     {
         return $this->output;
+    }
+
+    /**
+     * Get the last line of the standard output of the process.
+     */
+    protected function lastOutput(): string
+    {
+        return last(explode("\n", trim($this->output)));
     }
 }
