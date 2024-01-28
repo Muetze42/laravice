@@ -18,7 +18,8 @@ abstract class AbstractService
     {
         return !count(Arr::where(
             (array) static::requiredPackages(),
-            fn ($requirement) => config('laravice.packages.' . $requirement) === false
+            fn ($requirement) => is_bool($requirement) ? !$requirement :
+                (config('laravice.packages.' . $requirement) === false)
         ));
     }
 }

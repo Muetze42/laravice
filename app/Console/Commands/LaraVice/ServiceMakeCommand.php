@@ -62,7 +62,7 @@ class ServiceMakeCommand extends GeneratorCommand
         );
 
         $contents .= "\n" . 'if (' . class_basename($name) . 'Service::active()) {';
-        $contents .= "\n\t" . 'Route::get(\'' . $route . '\', ' . class_basename($name) . 'Controller::class);';
+        $contents .= "\n\t" . 'Route::post(\'' . $route . '\', ' . class_basename($name) . 'Controller::class);';
         $contents .= "\n}";
 
         file_put_contents($file, str_replace("\t", '    ', $contents) . "\n");
