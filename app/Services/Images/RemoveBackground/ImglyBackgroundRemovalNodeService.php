@@ -20,10 +20,10 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
         return ['@imgly/background-removal-node'];
     }
 
-    public function __construct(string $relativePath)
+    public function __construct(string $relativePath, string $format)
     {
         $result = Process::path(base_path('packages/imgly-background-removal-node'))
-            ->run([config('process.commands.node'), 'script.js', $relativePath]);
+            ->run([config('process.commands.node'), 'script.js', $relativePath, $format]);
 
         $this->output = $result->successful() ? trim($result->output()) : $result->errorOutput();
     }

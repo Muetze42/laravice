@@ -18,12 +18,12 @@ class ImglyBackgroundRemovalNodeController extends Controller
         $request->validate([
             'image' => ['required', File::image()],
             //'quality' => 'nullable|numeric|between:0.01,1',
-            //'format' => 'nullable|in:png,jpeg,webp'
+            'format' => 'nullable|in:png,jpg,jpeg,webp'
         ]);
 
         $image = $request->file('image');
         //$quality = $request->float('quality', 1);
-        //$format = $request->input('format', 'png');
+        $format = $request->input('format', 'png');
 
         $filename = md5_file($image->path()) . '.' . $image->extension();
 
@@ -31,7 +31,7 @@ class ImglyBackgroundRemovalNodeController extends Controller
             $image->storeAs('', $filename, 'temporary');
         }
 
-        $service = new ImglyBackgroundRemovalNodeService(TempStorage::relativePath($filename));
+        $service = new ImglyBackgroundRemovalNodeService(TempStorage::relativePath($filename), $format);
 
         if ($service->failed()) {
             return response()->error($service->output());

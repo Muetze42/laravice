@@ -6,11 +6,24 @@ const {
 const fs = require('fs')
 
 const sourceFile = process.argv[2]
-const format = process.argv[3] ? process.argv[3] : 'image/png'
+const fileExt = process.argv[3] ? process.argv[3] : 'png'
 const quality = process.argv[4] ? process.argv[4] : 1
 
 function base_path(path) {
   return './../../' + path
+}
+
+let format
+switch(fileExt) {
+  case 'jpeg':
+  case 'jpg':
+    format = 'image/jpeg';
+    break;
+  case 'webp':
+    format = 'image/webp';
+    break;
+  default:
+    format = 'image/png';
 }
 
 async function run() {
@@ -25,7 +38,7 @@ async function run() {
     },
     output: {
       quality: quality,
-      format: format //image/png, image/jpeg, image/webp
+      format: format
     }
   }
   // const blob = await removeBackground('/../../' . sourceFile, config);
@@ -34,8 +47,7 @@ async function run() {
 
   const buffer = await blob.arrayBuffer()
   try {
-    const targetExt = format.split('/').pop()
-    const targetFile = sourceFile + '-imgly-background-removal-node-q' + (quality * 100) + '.' + targetExt
+    const targetFile = sourceFile + '-imgly-background-removal-node-q' + (quality * 100) + '.' + fileExt
     await fs.promises.writeFile(base_path(targetFile), Buffer.from(buffer));
     console.log('Image saved to', targetFile)
   } catch (error) {
