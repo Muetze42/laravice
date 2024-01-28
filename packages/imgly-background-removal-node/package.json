@@ -1,0 +1,7 @@
+{
+    "private": true,
+    "scripts": {},
+    "dependencies": {
+        "@imgly/background-removal-node": "^1.4.1"
+    }
+}

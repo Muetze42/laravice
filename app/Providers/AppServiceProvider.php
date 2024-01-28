@@ -6,6 +6,7 @@ use App\Models\PersonalAccessToken;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Sanctum\Sanctum;
@@ -68,6 +69,26 @@ class AppServiceProvider extends ServiceProvider
                 $headers,
                 $options
             );
+        });
+
+        Response::macro('error', function (
+            string $message,
+            int $status = 500,
+            array $headers = [],
+            int $options = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
+        ): JsonResponse {
+            /* @var \Illuminate\Support\Facades\Response $this */
+            return $this->json(
+                ['message' => $message],
+                $status,
+                $headers,
+                $options
+            );
+        });
+
+        Storage::macro('relativePath', function (string $path): string {
+            /* @var \Illuminate\Support\Facades\Storage $this */
+            return ltrim(str_replace(base_path(''), '', $this->path($path)), '/\\');
         });
     }
 }

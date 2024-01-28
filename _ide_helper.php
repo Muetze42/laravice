@@ -10068,6 +10068,19 @@
                         /** @var \Illuminate\Process\Factory $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param array|string|null $command
+         * @param callable|null $output
+         * @return \Illuminate\Contracts\Process\ProcessResult 
+         * @static 
+         */ 
+        public static function runNode($command = null, $output = null)
+        {
+                        return \Illuminate\Process\Factory::runNode($command, $output);
+        }
          
     }
             /**
@@ -13606,6 +13619,21 @@
         {
                         return \Illuminate\Routing\ResponseFactory::message($message, $status, $headers, $options);
         }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $message
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */ 
+        public static function error($message, $status = 500, $headers = [], $options = 192)
+        {
+                        return \Illuminate\Routing\ResponseFactory::error($message, $status, $headers, $options);
+        }
          
     }
             /**
@@ -16709,6 +16737,18 @@
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $path
+         * @return string 
+         * @static 
+         */ 
+        public static function relativePath($path)
+        {
+                        return \Illuminate\Filesystem\FilesystemAdapter::relativePath($path);
+        }
          
     }
             /**
@@ -19546,6 +19586,69 @@
         public static function message($message, $status = 200, $headers = [], $options = 192)
         {
                         return \Illuminate\Routing\ResponseFactory::message($message, $status, $headers, $options);
+        }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $message
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */ 
+        public static function error($message, $status = 500, $headers = [], $options = 192)
+        {
+                        return \Illuminate\Routing\ResponseFactory::error($message, $status, $headers, $options);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Filesystem { 
+            /**
+     * 
+     *
+     * @mixin \League\Flysystem\FilesystemOperator
+     */ 
+        class FilesystemAdapter {
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $path
+         * @return string 
+         * @static 
+         */ 
+        public static function relativePath($path)
+        {
+                        return \Illuminate\Filesystem\FilesystemAdapter::relativePath($path);
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Process { 
+            /**
+     * 
+     *
+     */ 
+        class Factory {
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param array|string|null $command
+         * @param callable|null $output
+         * @return \Illuminate\Contracts\Process\ProcessResult 
+         * @static 
+         */ 
+        public static function runNode($command = null, $output = null)
+        {
+                        return \Illuminate\Process\Factory::runNode($command, $output);
         }
          
     }

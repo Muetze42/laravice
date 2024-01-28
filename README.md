@@ -17,8 +17,8 @@ A Laravel Web Service App with various services for documents (PDF, Excel etc.),
   - [ ] [Text on images](https://github.com/Muetze42/gd-text)
   - [ ] WebP Converter
   - [ ] Remove Background
-      - [Python Tool](https://github.com/nadermx/backgroundremover)
-      - [Node.js Tool](https://github.com/imgly/background-removal-js)
+      - [ ] [Python Tool](https://github.com/nadermx/backgroundremover)
+      - [X] [Node.js Tool](https://github.com/imgly/background-removal-js)
 - [ ] [Convert HTML to an image, PDF or string](https://spatie.be/docs/browsershot/v4/introduction)
 - [ ] [Psalm](https://psalm.dev/) Return type Generator
 - [ ] XML Converter

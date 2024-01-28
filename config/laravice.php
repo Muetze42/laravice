@@ -17,7 +17,8 @@ $configFile = base_path('laravice.config.yaml');
 $config = file_exists($configFile) ? Yaml::parseFile($configFile) : [];
 
 return [
+    'download-as-default' => data_get($config, 'download-as-default', true),
     'packages' => [
-        'spatie/laravel-pdf' => data_get($config, 'packages.spatie/laravel-pdf', true),
+        '@imgly/background-removal-node' => data_get($config, 'packages.@imgly/background-removal-node', true),
     ],
 ];

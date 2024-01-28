@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
+            'email' => 'required|email:rfc,dns|unique:users|max:255',
             'password' => ['required', Password::defaults()],
             'is_admin' => 'bool|nullable',
         ]);
@@ -60,7 +60,7 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'email' => 'nullable|email|unique:users|max:255',
+            'email' => 'nullable|email:rfc,dns|unique:users|max:255',
             'password' => ['nullable', Password::defaults()],
             'is_admin' => 'bool|nullable',
         ]);
