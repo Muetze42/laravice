@@ -26,9 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerManagers(): void
     {
-        $this->app->singleton('filesystem.documents', function ($app) {
-            return (new FilesystemManager($app))->disk('documents');
-        });
         $this->app->singleton('filesystem.media', function ($app) {
             return (new FilesystemManager($app))->disk('media');
         });
