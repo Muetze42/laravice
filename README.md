@@ -58,7 +58,8 @@ if (VendorPackageService::active()) {
     - [ ] Create Square Images
     - [ ] WebP Converter
     - [ ] Remove Background
-        - [ ] [Python Tool](https://github.com/nadermx/backgroundremover)
+        - [ ] [Python Tool 1](https://github.com/danielgatis/rembg)
+        - [ ] [Python Tool 2](https://github.com/nadermx/backgroundremover)
         - [X] [Node.js Tool](https://github.com/imgly/background-removal-js)
         - find alternatives
 - [ ] [Convert HTML to an image, PDF or string](https://spatie.be/docs/browsershot/v4/introduction)
@@ -78,10 +79,10 @@ if (VendorPackageService::active()) {
 - [ ] [pdf-to-text](https://github.com/spatie/pdf-to-text)
 - ~~SCSS to CSS Converter~~
 - ~~Less to CSS Converter~~
-- [ ] HTML Minify
-- [ ] CSS Minify
-- [ ] JS Minify
-- [ ] Validator
+- ~~HTML Minify~~
+- ~~CSS Minify~~
+- ~~JS Minify~~
+- ~~Validator~~
 - [ ] Excel & CSV Converter
 - ~~Password Generator~~
 - [ ] Markdown Converter
