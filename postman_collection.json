@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "a715879b-b5f3-4bfc-b91e-4718dc21abdd",
+		"name": "LaraVice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7458133"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "{{USER_EMAIL}}",
+									"description": "required|email",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{USER_PASSWORD}}",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "token_name",
+									"value": "My Token",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "expires_in",
+									"value": "14400",
+									"description": "nullable|int|min:10|max:525600 Exprie in minutes",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{APP_URL}}/login",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/users",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/users/:id",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1",
+									"description": "The user id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ewrtere@qdsadew.de",
+									"description": "required|string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ewrtere@qdsadew.de",
+									"description": "required|email|unique:users|max:255",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "ewrtere@qdsadew.dee3W§$",
+									"description": "required",
+									"type": "text"
+								},
+								{
+									"key": "is_admin",
+									"value": "",
+									"description": "bool|nullable",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{APP_URL}}/users",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"description": "string|max:255",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "",
+									"description": "email|unique:users|max:255",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "is_admin",
+									"value": "1",
+									"description": "bool",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"description": "Postman Fix",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{APP_URL}}/users/:id",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{APP_URL}}/users/:id",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Remove Background",
+					"item": [
+						{
+							"name": "@imgly/background-removal-node",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "required|file:image",
+											"type": "file",
+											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+										},
+										{
+											"key": "download",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "format",
+											"value": "png",
+											"description": "nullable|in:png,jpg,jpeg,webp",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{APP_URL}}/images/remove-background/imgly-background-removal-node",
+									"host": [
+										"{{APP_URL}}"
+									],
+									"path": [
+										"images",
+										"remove-background",
+										"imgly-background-removal-node"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Manipulation",
+					"item": [
+						{
+							"name": "spatie/image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "required|file:image",
+											"type": "file",
+											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+										},
+										{
+											"key": "action[width]",
+											"value": "100",
+											"description": "int Resizing image",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[height]",
+											"value": "100",
+											"description": "int Resizing image",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[fit]",
+											"value": "contain,300,300",
+											"description": "<contain|max|fill|stretch|crop,width,height>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[crop]",
+											"value": "100,100,center",
+											"description": "<int:width,int:height,topLeft|top|topRight|left|center|right|bottomLeft|bottom|bottomRight>",
+											"type": "text"
+										},
+										{
+											"key": "action[manualCrop]",
+											"value": "300,300,10,10",
+											"description": "<int:width,int:height,int:x,int:y>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[brightness]",
+											"value": "20",
+											"description": "Accepts a value between -100 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[contrast]",
+											"value": "20",
+											"description": "Accepts a value between -100 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[gamma]",
+											"value": "4.1",
+											"description": "Accepts a value between 0.1 and 9.99",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[colorize]",
+											"value": "100,0,0",
+											"description": "<int:red,int:green,int:blue> accepts values between -100 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[orientation]",
+											"value": "180",
+											"description": "<0|90|180|270>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[flip]",
+											"value": "horizontal",
+											"description": "horizontal|vertical|both",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[blur]",
+											"value": "10",
+											"description": "Accepts a value between 0 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[pixelate]",
+											"value": "10",
+											"description": "Accepts a value between 0 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[greyscale]",
+											"value": "10",
+											"description": "Accepts a value between 0 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[sharpen]",
+											"value": "10",
+											"description": "Accepts a value between 0 and 100",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[sepia]",
+											"value": "1",
+											"description": "No value. Just 1 for activate",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{APP_URL}}/images/manipulation/spatie-image",
+									"host": [
+										"{{APP_URL}}"
+									],
+									"path": [
+										"images",
+										"manipulation",
+										"spatie-image"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Check API reachability and get an inspiring quote",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APP_URL}}",
+					"host": [
+						"{{APP_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "who am i",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APP_URL}}/whoami",
+					"host": [
+						"{{APP_URL}}"
+					],
+					"path": [
+						"whoami"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APP_URL",
+			"value": "http://localhost",
+			"type": "string"
+		},
+		{
+			"key": "USER_EMAIL",
+			"value": "test-admin@huth.it",
+			"type": "string"
+		},
+		{
+			"key": "USER_PASSWORD",
+			"value": "password",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "USER_TOKEN",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "ADMIN_TOKEN",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

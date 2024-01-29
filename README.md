@@ -4,6 +4,8 @@ A Laravel Web Service App with various services for documents (PDF, Excel etc.),
 
 > Under development
 
+Postman Collection: [postman_collection.json](postman_collection.json)
+
 ## Set Up
 
 * Install Composer dependencies: `composer install`
