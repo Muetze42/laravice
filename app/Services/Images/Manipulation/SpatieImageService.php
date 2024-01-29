@@ -30,7 +30,10 @@ class SpatieImageService extends AbstractService
         foreach ($actions as $method => $arguments) {
             $arguments = explode(',', $arguments);
             $arguments = array_map('trim', $arguments);
-            $image = call_user_func([$image, $method], $arguments);
+            // Todo: Action Casts
+            // Todo: Enum Casts
+            $arguments = array_map(fn ($argument) => is_numeric($argument) ? (int) $argument : $argument, $arguments);
+            $image = call_user_func_array([$image, $method], $arguments);
         }
 
         $image->save();

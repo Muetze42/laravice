@@ -48,12 +48,12 @@ class SpatieImageManipulationsRule implements ValidationRule
                     $cases = array_map(fn (CropPosition $case) => $case->value, CropPosition::cases());
                     if (
                         count($parts) != 3 || !$this->isIntegerString($parts[0]) || !$this->isIntegerString($parts[1])
-                        || !in_array($parts[0], $cases)
+                        || !in_array($parts[2], $cases)
                     ) {
                         $fail(
                             __('validation.custom.format', [
                                 'attribute' => 'action.' . $method,
-                                'format' => '<' . implode('|', $cases) . ',int:width,int:height>',
+                                'format' => 'int:width,int:height,<' . implode('|', $cases) . '>',
                             ])
                         );
                     }
