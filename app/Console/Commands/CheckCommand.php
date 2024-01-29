@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Commands\LaraVice;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'laravice:check')]
+#[AsCommand(name: 'app:check')]
 class CheckCommand extends Command
 {
     /**
@@ -13,7 +13,7 @@ class CheckCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'laravice:check';
+    protected $signature = 'app:check';
 
     /**
      * The console command description.

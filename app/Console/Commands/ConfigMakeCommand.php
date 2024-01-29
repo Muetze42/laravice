@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Console\Commands\LaraVice;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
-#[AsCommand(name: 'laravice:config')]
+#[AsCommand(name: 'app:config')]
 class ConfigMakeCommand extends Command
 {
     /**
@@ -13,7 +13,7 @@ class ConfigMakeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'laravice:config {--force : Force the operation to run when in production}';
+    protected $signature = 'app:config {--force : Force the operation to run when in production}';
 
     /**
      * The console command description.

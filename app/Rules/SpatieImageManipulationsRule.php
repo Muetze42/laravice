@@ -4,12 +4,10 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Orientation;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\FlipDirection;
-
-use function Symfony\Component\String\b;
+use Spatie\Image\Enums\Orientation;
 
 class SpatieImageManipulationsRule implements ValidationRule
 {
@@ -32,7 +30,7 @@ class SpatieImageManipulationsRule implements ValidationRule
                     break;
                 case 'fit':
                     $parts = explode(',', $item);
-                    $cases = array_map(fn(Fit $case) => $case->value, Fit::cases());
+                    $cases = array_map(fn (Fit $case) => $case->value, Fit::cases());
                     if (
                         count($parts) != 3 || !in_array($parts[0], $cases) ||
                         !$this->isIntegerString($parts[1]) || !$this->isIntegerString($parts[2])
@@ -47,7 +45,7 @@ class SpatieImageManipulationsRule implements ValidationRule
                     break;
                 case 'crop':
                     $parts = explode(',', $item);
-                    $cases = array_map(fn(CropPosition $case) => $case->value, CropPosition::cases());
+                    $cases = array_map(fn (CropPosition $case) => $case->value, CropPosition::cases());
                     if (
                         count($parts) != 3 || !$this->isIntegerString($parts[0]) || !$this->isIntegerString($parts[1])
                         || !in_array($parts[0], $cases)
@@ -108,7 +106,7 @@ class SpatieImageManipulationsRule implements ValidationRule
                     }
                     break;
                 case 'orientation':
-                    $cases = array_map(fn(Orientation $case) => $case->degrees(), Orientation::cases());
+                    $cases = array_map(fn (Orientation $case) => $case->degrees(), Orientation::cases());
                     if (!in_array($item, $cases)) {
                         $fail(__('validation.in_array', [
                             'attribute' => 'action.' . $method,
@@ -117,7 +115,7 @@ class SpatieImageManipulationsRule implements ValidationRule
                     }
                     break;
                 case 'flip':
-                    $cases = array_map(fn(FlipDirection $case) => $case->value, FlipDirection::cases());
+                    $cases = array_map(fn (FlipDirection $case) => $case->value, FlipDirection::cases());
                     if (!in_array($item, $cases)) {
                         $fail(__('validation.in_array', [
                             'attribute' => 'action.' . $method,
@@ -132,9 +130,9 @@ class SpatieImageManipulationsRule implements ValidationRule
                     if (!$this->isIntegerString($item) || (int) $item > 100 || (int) $item < 0) {
                         $fail(
                             __('validation.digits_between', [
-                            'attribute' => 'action.' . $method,
-                            'min' => 0,
-                            'max' => 100,
+                                'attribute' => 'action.' . $method,
+                                'min' => 0,
+                                'max' => 100,
                             ])
                         );
                     }

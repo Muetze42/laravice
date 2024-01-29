@@ -19,6 +19,7 @@ class SpatieImageService extends AbstractService
             extension_loaded('imagick'),
         ];
     }
+
     /**
      * @throws \Spatie\Image\Exceptions\CouldNotLoadImage
      */
