@@ -170,9 +170,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'format' => 'The correct :attribute field format is :format.',
+        'action_not_supported' => 'The action :attribute is not supported or not exist.',
     ],
 
     /*

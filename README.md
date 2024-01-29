@@ -46,11 +46,11 @@ if (VendorPackageService::active()) {
     - [ ] [DomPDF](https://github.com/barryvdh/laravel-dompdf)
     - [ ] [Laravel-pdf](https://spatie.be/docs/laravel-pdf)
 - [ ] Image Tools
-    - [ ] [Resizing images](https://spatie.be/docs/image/image-manipulations/resizing-images)
+    - [X] [Resizing images](https://spatie.be/docs/image/image-manipulations/resizing-images)
     - [ ] [Optimizing images](https://spatie.be/docs/image/image-manipulations/optimizing-images)
-    - [ ] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
+    - [X] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
     - [ ] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
-    - [ ] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
+    - [X] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
     - [ ] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
     - [ ] [Text on images](https://github.com/Muetze42/gd-text)
     - [ ] WebP Converter

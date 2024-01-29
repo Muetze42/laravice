@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\Images\Manipulation\SpatieImageController;
 use App\Http\Controllers\Images\RemoveBackground\ImglyBackgroundRemovalNodeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
+use App\Services\Images\Manipulation\SpatieImageService;
 use App\Services\Images\RemoveBackground\ImglyBackgroundRemovalNodeService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Route;
@@ -34,4 +36,7 @@ Route::get('whoami', WhoamiController::class)->name('whoami');
 
 if (ImglyBackgroundRemovalNodeService::active()) {
     Route::post('images/remove-background/imgly-background-removal-node', ImglyBackgroundRemovalNodeController::class);
+}
+if (SpatieImageService::active()) {
+    Route::post('images/manipulation/spatie-image', SpatieImageController::class);
 }
