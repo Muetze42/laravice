@@ -3,10 +3,28 @@
 namespace App\Services\Images\Manipulation;
 
 use App\Services\AbstractService;
+use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
+use Spatie\Image\Enums\FlipDirection;
+use Spatie\Image\Enums\Orientation;
 use Spatie\Image\Image;
 
 class SpatieImageService extends AbstractService
 {
+    /**
+     * Determine the enums for methods.
+     *
+     * @return array<string|object>
+     */
+    protected array $enums = [
+        'crop' => CropPosition::class,
+        'fit' => Fit::class,
+        'flip' => FlipDirection::class,
+        'orientation' => Orientation::class,
+    ];
+
+    protected string $method;
+
     /**
      * Determine the required packages for this service.
      *
@@ -28,14 +46,33 @@ class SpatieImageService extends AbstractService
         $image = Image::load($path);
 
         foreach ($actions as $method => $arguments) {
+            $this->method = $method;
             $arguments = explode(',', $arguments);
-            $arguments = array_map('trim', $arguments);
-            // Todo: Action Casts
-            // Todo: Enum Casts
-            $arguments = array_map(fn ($argument) => is_numeric($argument) ? (int) $argument : $argument, $arguments);
+            $arguments = array_map([$this, 'cast'], $arguments);
             $image = call_user_func_array([$image, $method], $arguments);
         }
 
         $image->save();
+    }
+
+    /**
+     * Cast an arguments to an Enum case.
+     */
+    protected function cast(string $value): mixed
+    {
+        $value = trim($value);
+
+        if (isset($this->enums[$this->method])) {
+            /* @var CropPosition|Fit|FlipDirection|Orientation $enum */
+            $enum = $this->enums[$this->method];
+            $cases = $enum::cases();
+            foreach ($cases as $case) {
+                if ($case->value == $value) {
+                    return $case;
+                }
+            }
+        }
+
+        return $value;
     }
 }
