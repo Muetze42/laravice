@@ -26,7 +26,6 @@ class ImglyBackgroundRemovalNodeController extends Controller
         $format = $request->input('format', 'png');
 
         $filename = md5_file($image->path()) . '.' . $image->extension();
-
         if (!TempStorage::fileExists($filename)) {
             $image->storeAs('', $filename, 'temporary');
         }

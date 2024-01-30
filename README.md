@@ -58,7 +58,7 @@ if (VendorPackageService::active()) {
     - [ ] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
     - [ ] [Text on images](https://github.com/Muetze42/gd-text)
     - [ ] Create Square Images
-    - [ ] WebP Converter
+    - [X] WebP Converter
     - [ ] Remove Background
         - [ ] [Python Tool 1](https://github.com/danielgatis/rembg)
         - [ ] [Python Tool 2](https://github.com/nadermx/backgroundremover)

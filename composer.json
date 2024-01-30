@@ -15,6 +15,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-exif": "*",
         "ext-gd": "*",
         "ext-imagick": "*",
         "barryvdh/laravel-dompdf": "^2.0",

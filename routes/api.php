@@ -5,6 +5,8 @@ use App\Http\Controllers\Images\Manipulation\SpatieImageController;
 use App\Http\Controllers\Images\RemoveBackground\ImglyBackgroundRemovalNodeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
+use App\Http\Controllers\Images\WebPConverter\ImagickController;
+use App\Services\Images\WebPConverter\ImagickService;
 use App\Services\Images\Manipulation\SpatieImageService;
 use App\Services\Images\RemoveBackground\ImglyBackgroundRemovalNodeService;
 use Illuminate\Foundation\Inspiring;
@@ -39,4 +41,7 @@ if (ImglyBackgroundRemovalNodeService::active()) {
 }
 if (SpatieImageService::active()) {
     Route::post('images/manipulation/spatie-image', SpatieImageController::class);
+}
+if (ImagickService::active()) {
+    Route::post('images/webp-converter/imagick', ImagickController::class);
 }

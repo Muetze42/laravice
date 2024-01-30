@@ -116,19 +116,19 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "ewrtere@qdsadew.de",
+									"value": "",
 									"description": "required|string|max:255",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "ewrtere@qdsadew.de",
+									"value": "",
 									"description": "required|email|unique:users|max:255",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "ewrtere@qdsadew.dee3W§$",
+									"value": "",
 									"description": "required",
 									"type": "text"
 								},
@@ -432,6 +432,53 @@
 										"images",
 										"manipulation",
 										"spatie-image"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "WebP Converter",
+					"item": [
+						{
+							"name": "Imagick WebP",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "required|file:image",
+											"type": "file",
+											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+										},
+										{
+											"key": "quality",
+											"value": "80",
+											"description": "nullable|int|between:1,100",
+											"type": "text"
+										},
+										{
+											"key": "download",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{APP_URL}}/images/webp-converter/imagick",
+									"host": [
+										"{{APP_URL}}"
+									],
+									"path": [
+										"images",
+										"webp-converter",
+										"imagick"
 									]
 								}
 							},
