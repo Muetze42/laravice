@@ -30,6 +30,6 @@ class ImagickController extends Controller
             $image->storeAs('', $filename, 'temporary');
         }
 
-        return $this->fileResponse(ImagickService::toWebp($filename, $quality));
+        return $this->fileResponse(ImagickService::toWebp(TempStorage::path($filename), $quality));
     }
 }

@@ -454,12 +454,12 @@
 											"key": "image",
 											"description": "required|file:image",
 											"type": "file",
-											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+											"src": "/C:/xampp/htdocs/apps/laravice/laravice/debug/01.jpg"
 										},
 										{
 											"key": "quality",
 											"value": "80",
-											"description": "nullable|int|between:1,100",
+											"description": "nullable|int|between:1,100 Default: 80",
 											"type": "text"
 										},
 										{
