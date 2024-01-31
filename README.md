@@ -55,7 +55,7 @@ if (VendorPackageService::active()) {
     - [X] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
     - [X] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
     - [X] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
-    - [ ] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
+    - [X] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
     - [ ] [Text on images](https://github.com/Muetze42/gd-text)
     - [ ] Create Square Images
     - [X] WebP Converter
