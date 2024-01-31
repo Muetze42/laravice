@@ -506,6 +506,112 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Watermark",
+					"item": [
+						{
+							"name": "spatie/image",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"description": "required|file:image",
+											"type": "file",
+											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg",
+											"disabled": true
+										},
+										{
+											"key": "watermark",
+											"description": "required|file:image",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "position",
+											"value": "center",
+											"description": "nullable|<top|top-center|top-middle|center-top|middle-top|top-right|right-top|left|left-center|left-middle|center-left|middle-left|right|right-center|right-middle|center-right|middle-right|bottom-left|left-bottom|bottom|bottomCenter|bottom-middle|center-bottom|middle-bottom|bottom-right|right-bottom|center|middle|centerCenter|middleMiddle|top-left|left-top>",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paddingX",
+											"value": "5",
+											"description": "nullable|int",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paddingY",
+											"value": "5",
+											"description": "nullable|int",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "paddingInPercent",
+											"value": "1",
+											"description": "nullable|bool",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "width",
+											"value": "100",
+											"description": "nullable|int",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "widthInPercent",
+											"value": "1",
+											"description": "nullable|bool",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "height",
+											"value": "100",
+											"description": "nullable|int",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "heightInPercent",
+											"value": "1",
+											"description": "nullable|bool",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "alpha",
+											"value": "100",
+											"description": "nullable|int|between:0,100",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{APP_URL}}/images/watermark/spatie-image",
+									"host": [
+										"{{APP_URL}}"
+									],
+									"path": [
+										"images",
+										"watermark",
+										"spatie-image"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},

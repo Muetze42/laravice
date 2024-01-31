@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\PersonalAccessToken;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
@@ -84,6 +85,15 @@ class AppServiceProvider extends ServiceProvider
         Storage::macro('relativePath', function (string $path): string {
             /* @var \Illuminate\Support\Facades\Storage $this */
             return ltrim(str_replace(base_path(''), '', $this->path($path)), '/\\');
+        });
+
+        Request::macro('enumD', function (string $key, $enumClass, mixed $default): mixed {
+            /* @var \Illuminate\Support\Facades\Request $this */
+            if (is_null($this->input($key))) {
+                return $default;
+            }
+
+            return $this->enum($key, $enumClass);
         });
     }
 }

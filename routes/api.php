@@ -3,12 +3,13 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Images\Manipulation\SpatieImageController;
 use App\Http\Controllers\Images\RemoveBackground\ImglyBackgroundRemovalNodeController;
+use App\Http\Controllers\Images\Watermark\SpatieImageController as SpatieImageWatermarkController;
+use App\Http\Controllers\Images\WebPConverter\ImagickController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
-use App\Http\Controllers\Images\WebPConverter\ImagickController;
-use App\Services\Images\WebPConverter\ImagickService;
 use App\Services\Images\Manipulation\SpatieImageService;
 use App\Services\Images\RemoveBackground\ImglyBackgroundRemovalNodeService;
+use App\Services\Images\WebPConverter\ImagickService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ if (ImglyBackgroundRemovalNodeService::active()) {
 }
 if (SpatieImageService::active()) {
     Route::post('images/manipulation/spatie-image', SpatieImageController::class);
+    Route::post('images/watermark/spatie-image', SpatieImageWatermarkController::class);
 }
 if (ImagickService::active()) {
     Route::post('images/webp-converter/imagick', ImagickController::class);

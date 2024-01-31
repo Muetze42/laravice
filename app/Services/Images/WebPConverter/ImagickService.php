@@ -4,7 +4,6 @@ namespace App\Services\Images\WebPConverter;
 
 use App\Services\AbstractService;
 use Imagick;
-use ImagickException;
 
 class ImagickService extends AbstractService
 {

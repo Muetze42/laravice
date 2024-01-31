@@ -47,6 +47,7 @@ class SpatieImageService extends AbstractService
     {
         $image = Image::load($path);
 
+        // Todo: Error Handle
         foreach ($actions as $method => $arguments) {
             $this->method = $method;
             $arguments = explode(',', $arguments);
