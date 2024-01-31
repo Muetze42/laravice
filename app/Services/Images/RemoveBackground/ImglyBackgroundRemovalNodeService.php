@@ -20,12 +20,12 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
         return ['@imgly/background-removal-node'];
     }
 
-    public function __construct(string $relativePath, string $format)
+    public function __construct(string $source, string $targetPath, string $format, float $quality)
     {
         $result = NodeProcess::path(base_path('packages/imgly-background-removal-node'))
-            ->run(['script.js', $relativePath, $format]);
+            ->run(['script.js', $source, $targetPath, $format, $quality]);
 
-        $this->output = $result->successful() ? trim($result->output()) : $result->errorOutput();
+        $this->output = trim($result->successful() ? $result->output() : $result->errorOutput());
     }
 
     /**
@@ -33,7 +33,7 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
      */
     public function successful(): bool
     {
-        return str_starts_with($this->lastOutput(), 'Image saved to ');
+        return $this->output == 'process was successful';
     }
 
     /**
@@ -45,26 +45,10 @@ class ImglyBackgroundRemovalNodeService extends AbstractService
     }
 
     /**
-     * Get the relative path to generated file.
-     */
-    public function targetPath(): string
-    {
-        return last(explode(' ', $this->lastOutput()));
-    }
-
-    /**
      * Get the standard output of the process.
      */
     public function output(): string
     {
         return $this->output;
-    }
-
-    /**
-     * Get the last line of the standard output of the process.
-     */
-    protected function lastOutput(): string
-    {
-        return last(explode("\n", trim($this->output)));
     }
 }

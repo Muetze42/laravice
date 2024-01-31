@@ -17,25 +17,36 @@ class ImglyBackgroundRemovalNodeController extends Controller
     {
         $request->validate([
             'image' => ['required', File::image()],
-            //'quality' => 'nullable|numeric|between:0.01,1',
+            'quality' => 'nullable|numeric|between:0.1,1',
             'format' => 'nullable|in:png,jpg,jpeg,webp',
         ]);
 
         $image = $request->file('image');
-        //$quality = $request->float('quality', 1);
+        $quality = $request->float('quality', 1);
         $format = $request->input('format', 'png');
 
-        $filename = md5_file($image->path()) . '.' . $image->extension();
-        if (!TempStorage::fileExists($filename)) {
-            $image->storeAs('', $filename, 'temporary');
+        $md5 = md5_file($image->path());
+        $targetPath = $md5 . '-' . $quality . '.' . extByMime($format);
+        $target = TempStorage::path('imgly-background-removal-node/' . $targetPath);
+
+        if (!file_exists($target)) {
+            $filename = $md5 . '.' . $image->extension();
+            if (!TempStorage::fileExists('imgly-background-removal-node/' . $filename)) {
+                $image->storeAs('imgly-background-removal-node', $filename, 'temporary');
+            }
+
+            $service = new ImglyBackgroundRemovalNodeService(
+                TempStorage::relativePath('imgly-background-removal-node/' . $filename),
+                TempStorage::relativePath('imgly-background-removal-node/' . $targetPath),
+                $format,
+                $quality,
+            );
+
+            if ($service->failed()) {
+                return response()->error($service->output());
+            }
         }
 
-        $service = new ImglyBackgroundRemovalNodeService(TempStorage::relativePath($filename), $format);
-
-        if ($service->failed()) {
-            return response()->error($service->output());
-        }
-
-        return $this->fileResponse(base_path($service->targetPath()), $request);
+        return $this->fileResponse($target, $request);
     }
 }

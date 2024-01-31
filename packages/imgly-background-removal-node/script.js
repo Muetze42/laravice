@@ -6,8 +6,9 @@ const {
 const fs = require('fs')
 
 const sourceFile = process.argv[2]
-const fileExt = process.argv[3] ? process.argv[3] : 'png'
-const quality = process.argv[4] ? process.argv[4] : 1
+const targetFile = process.argv[3]
+const fileExt = process.argv[4] ? process.argv[4] : 'png'
+const quality = process.argv[5] ? parseFloat(process.argv[5]) : 1
 
 function base_path(path) {
   return './../../' + path
@@ -30,12 +31,6 @@ async function run() {
   const config = {
     debug: false,
     // publicPath:  ...
-    progress: (key, current, total) => {
-      const [type, subtype] = key.split(':')
-      console.log(
-        `${type} ${subtype} ${((current / total) * 100).toFixed(0)}%`
-      )
-    },
     output: {
       quality: quality,
       format: format
@@ -47,9 +42,8 @@ async function run() {
 
   const buffer = await blob.arrayBuffer()
   try {
-    const targetFile = sourceFile + '-imgly-background-removal-node-q' + (quality * 100) + '.' + fileExt
     await fs.promises.writeFile(base_path(targetFile), Buffer.from(buffer));
-    console.log('Image saved to', targetFile)
+    console.log('process was successful')
   } catch (error) {
     console.error(error)
   }

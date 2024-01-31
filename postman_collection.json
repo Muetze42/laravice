@@ -260,7 +260,7 @@
 											"key": "image",
 											"description": "required|file:image",
 											"type": "file",
-											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+											"src": "/C:/xampp/htdocs/apps/laravice/2.jpg"
 										},
 										{
 											"key": "download",
@@ -274,6 +274,12 @@
 											"description": "nullable|in:png,jpg,jpeg,webp",
 											"type": "text",
 											"disabled": true
+										},
+										{
+											"key": "quality",
+											"value": "0.5",
+											"description": "nullable|numeric|between:0.1,1 Default: 1",
+											"type": "text"
 										}
 									]
 								},
