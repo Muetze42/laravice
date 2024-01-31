@@ -260,7 +260,7 @@
 											"key": "image",
 											"description": "required|file:image",
 											"type": "file",
-											"src": "/C:/xampp/htdocs/apps/laravice/2.jpg"
+											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
 										},
 										{
 											"key": "download",
@@ -279,7 +279,8 @@
 											"key": "quality",
 											"value": "0.5",
 											"description": "nullable|numeric|between:0.1,1 Default: 1",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
@@ -314,14 +315,13 @@
 											"key": "image",
 											"description": "required|file:image",
 											"type": "file",
-											"src": "/C:/xampp/htdocs/apps/laravice/1.jpg"
+											"src": "/C:/xampp/htdocs/apps/laravice/03.png"
 										},
 										{
 											"key": "action[width]",
 											"value": "100",
 											"description": "int Resizing image",
-											"type": "text",
-											"disabled": true
+											"type": "text"
 										},
 										{
 											"key": "action[height]",
@@ -341,7 +341,8 @@
 											"key": "action[crop]",
 											"value": "100,100,center",
 											"description": "<int:width,int:height,topLeft|top|topRight|left|center|right|bottomLeft|bottom|bottomRight>",
-											"type": "text"
+											"type": "text",
+											"disabled": true
 										},
 										{
 											"key": "action[manualCrop]",
@@ -424,6 +425,20 @@
 											"key": "action[sepia]",
 											"value": "1",
 											"description": "No value. Just 1 for activate",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[background]",
+											"value": "#16a34a",
+											"description": "HEX Color",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "action[border]",
+											"value": "10,overlay,#16a34a",
+											"description": "int:width,<expand|overlay|shrink>,sting:hex_color",
 											"type": "text",
 											"disabled": true
 										}
