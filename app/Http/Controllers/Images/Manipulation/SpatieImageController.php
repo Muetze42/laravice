@@ -25,18 +25,14 @@ class SpatieImageController extends Controller
 
         $actions = $request->input('action');
         $image = $request->file('image');
-        $md5 = md5_file($image->path());
 
         $path = 'spatie-image-manipulation';
-        $filename = $md5 . '.' . '-' . md5(json_encode($actions)) . '.' . $image->extension();
-        $filePath = TempStorage::path($path . DIRECTORY_SEPARATOR . $filename);
+        $filename = filename($image);
 
-        if (!file_exists($filePath)) {
-            $image->storeAs($path, $filename, 'temporary');
+        $imagePath = $image->storeAs($path, $filename, 'temporary');
 
-            new SpatieImageService($filePath, $actions);
-        }
+        new SpatieImageService(TempStorage::path($imagePath), $actions);
 
-        return $this->fileResponse($filePath);
+        return $this->fileResponse(TempStorage::path($imagePath));
     }
 }

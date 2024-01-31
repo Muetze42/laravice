@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Images\Watermark;
 
 use App\Http\Controllers\Controller;
+use App\Support\Facades\TempStorage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -36,10 +37,15 @@ class SpatieImageController extends Controller
         ]);
 
         // Todo: Next step^^
-        $image = $watermarkImage = 'Todo';
+        $image = $request->file('image');
+        $watermarkImage = $request->file('watermark');
+        $path = 'spatie-watermark';
 
-        Image::load($image)->watermark(
-            watermarkImage: $watermarkImage,
+        $imagePath = $image->storeAs($path, filename($image), 'temporary');
+        $watermarkImagePath = $watermarkImage->storeAs($path, filename($watermarkImage), 'temporary');
+
+        Image::load(TempStorage::path($imagePath))->watermark(
+            watermarkImage: TempStorage::path($watermarkImagePath),
             position: $request->enumD('position', AlignPosition::class, AlignPosition::BottomRight),
             paddingX: $request->integer('positionX'),
             paddingY: $request->integer('paddingY'),
@@ -50,5 +56,7 @@ class SpatieImageController extends Controller
             heightUnit: $request->boolean('heightInPercent') ? Unit::Percent : Unit::Pixel,
             alpha: $request->integer('alpha', 100),
         )->save();
+
+        return $this->fileResponse(TempStorage::path($imagePath));
     }
 }

@@ -25,11 +25,12 @@ class ImagickController extends Controller
         $image = $request->file('image');
         $quality = $request->integer('quality', 80);
 
-        $filename = md5_file($image->path()) . '.' . $image->extension();
-        if (!TempStorage::fileExists($filename)) {
-            $image->storeAs('', $filename, 'temporary');
-        }
+        $imagePath = $image->storeAs(
+            'webp-converter',
+            filename($image),
+            'temporary'
+        );
 
-        return $this->fileResponse(ImagickService::toWebp(TempStorage::path($filename), $quality));
+        return $this->fileResponse(ImagickService::toWebp(TempStorage::path($imagePath), $quality));
     }
 }
