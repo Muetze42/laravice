@@ -4,7 +4,7 @@ A Laravel Web Service App with various services for documents (PDF, Excel etc.),
 
 > Under development
 
-Postman Collection: [postman_collection.json](postman_collection.json)
+Postman Collection: [Watch on postman.com](https://www.postman.com/muetzeofficial/workspace/norman-huth/collection/7458133-3d9a154d-cfd4-42fd-8cd0-8603f91620c6?action=share&creator=7458133)
 
 ## Set Up
 
