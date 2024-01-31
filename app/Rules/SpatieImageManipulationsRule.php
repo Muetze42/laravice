@@ -4,6 +4,8 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\Concerns\ValidatesAttributes;
+use Spatie\Image\Enums\BorderType;
 use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\FlipDirection;
@@ -11,6 +13,9 @@ use Spatie\Image\Enums\Orientation;
 
 class SpatieImageManipulationsRule implements ValidationRule
 {
+    // Todo: Use trait methods
+    use ValidatesAttributes;
+
     /**
      * Run the validation rule.
      */
@@ -138,7 +143,29 @@ class SpatieImageManipulationsRule implements ValidationRule
                     }
                     break;
                 case 'sepia':
+                case 'optimize':
                     // Silent
+                    break;
+                case 'background':
+                    if (empty($item)) {
+                        $fail(__('validation.required', ['attribute' => 'action.' . $method]));
+                    }
+                    if (!$this->validateHexColor($attribute, $item)) {
+                        $fail(__('validation.hex_color', ['attribute' => 'action.' . $method]));
+                    }
+                    break;
+                case 'border':
+                    $parts = explode(',', $item);
+                    $cases = array_map(fn (BorderType $case) => $case->value, BorderType::cases());
+                    if (
+                        count($parts) != 3 || !$this->isIntegerString($parts[0]) || !in_array($parts[1], $cases) ||
+                        !$this->validateHexColor($attribute, $parts[2])
+                    ) {
+                        $fail(__('validation.custom.format', [
+                            'attribute' => 'action.' . $method,
+                            'format' => 'int:width,<' . implode('|', $cases) . '>,sting:hex_color',
+                        ]));
+                    }
                     break;
                 default:
                     $fail(__('validation.custom.action_not_supported', ['attribute' => $method]));

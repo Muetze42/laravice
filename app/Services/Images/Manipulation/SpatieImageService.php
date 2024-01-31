@@ -3,6 +3,7 @@
 namespace App\Services\Images\Manipulation;
 
 use App\Services\AbstractService;
+use Spatie\Image\Enums\BorderType;
 use Spatie\Image\Enums\CropPosition;
 use Spatie\Image\Enums\Fit;
 use Spatie\Image\Enums\FlipDirection;
@@ -17,6 +18,7 @@ class SpatieImageService extends AbstractService
      * @return array<string|object>
      */
     protected array $enums = [
+        'border' => BorderType::class,
         'crop' => CropPosition::class,
         'fit' => Fit::class,
         'flip' => FlipDirection::class,

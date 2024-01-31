@@ -7,7 +7,6 @@ use App\Rules\SpatieImageManipulationsRule;
 use App\Services\Images\Manipulation\SpatieImageService;
 use App\Support\Facades\TempStorage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\File;
 
 class SpatieImageController extends Controller
@@ -24,15 +23,19 @@ class SpatieImageController extends Controller
             'action' => ['required', new SpatieImageManipulationsRule()],
         ]);
 
+        $actions = $request->input('action');
         $image = $request->file('image');
+        $md5 = md5_file($image->path());
+
         $path = 'spatie-image-manipulation';
-        $filename = Str::slug(Str::uuid()) . '.' . $image->extension();
-
-        $image->storeAs($path, $filename, 'temporary');
-
+        $filename = $md5 . '.' . '-' . md5(json_encode($actions)) . '.' . $image->extension();
         $filePath = TempStorage::path($path . DIRECTORY_SEPARATOR . $filename);
 
-        new SpatieImageService($filePath, $request->input('action'));
+        if (!file_exists($filePath)) {
+            $image->storeAs($path, $filename, 'temporary');
+
+            new SpatieImageService($filePath, $actions);
+        }
 
         return $this->fileResponse($filePath);
     }

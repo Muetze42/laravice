@@ -53,7 +53,7 @@ if (VendorPackageService::active()) {
     - [X] [Resizing images](https://spatie.be/docs/image/image-manipulations/resizing-images)
     - [ ] [Optimizing images](https://spatie.be/docs/image/image-manipulations/optimizing-images) / [image-optimizer](https://github.com/spatie/image-optimizer)
     - [X] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
-    - [ ] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
+    - [X] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
     - [X] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
     - [ ] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
     - [ ] [Text on images](https://github.com/Muetze42/gd-text)
