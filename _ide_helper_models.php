@@ -21,7 +21,7 @@ namespace App\Models{
  * @property string $path
  * @property string $method
  * @property string $user_agent
- * @property string $ip
+ * @property string|null $ip
  * @property \Illuminate\Support\Carbon $created_at
  * @property-read \App\Models\PersonalAccessToken|null $token
  * @property-read \App\Models\User|null $user
@@ -79,9 +79,7 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $name
  * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property mixed $password
  * @property bool $is_admin
  * @property string|null $remember_token
@@ -101,10 +99,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActiveAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
