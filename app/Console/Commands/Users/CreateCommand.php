@@ -26,6 +26,11 @@ class CreateCommand extends Command
     protected $description = 'Creat a new User resource.';
 
     /**
+     * The User instance for the current batch.
+     */
+    protected ?User $user = null;
+
+    /**
      * The User attributes for the new User.
      */
     protected array $attributes = [
@@ -75,7 +80,11 @@ class CreateCommand extends Command
 
         $validator = Validator::make(
             ['email' => $this->attributes['email']],
-            ['email' => 'required|email:rfc,dns|unique:users|max:255']
+            ['email' => [
+                'required',
+                'email:rfc,dns',
+                $this->user ? 'unique:users,id,' . $this->user->getKey() : 'unique:users',
+            ]]
         );
 
         if ($validator->fails()) {
