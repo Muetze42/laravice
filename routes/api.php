@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Images\RemoveBackgroundController;
+use App\Http\Controllers\PsalmController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
 use App\Http\Middleware\CheckAbilityMiddleware;
@@ -23,6 +24,13 @@ Route::middleware([Authenticate::using('sanctum'), CheckAbilityMiddleware::class
     Route::apiResource('users', UserController::class)->withTrashed();
     Route::post('users/{user}', [UserController::class, 'restore'])->name('users.restore')->withTrashed();
 
+    /**
+     * Psalm.
+     */
+    Route::prefix('psalm')->name('psalm.')->group(function () {
+        Route::post('json-to-array-comment', [PsalmController::class, 'jsonToArrayComment'])
+            ->name('json-to-array-comment');
+    });
     /**
      * Images.
      */
