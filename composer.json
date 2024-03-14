@@ -19,6 +19,7 @@
         "norman-huth/gd-text": "^1.0",
         "spatie/browsershot": "^4.0",
         "spatie/image": "^3.4",
+        "spatie/laravel-pdf": "^1.4",
         "spatie/laravel-sitemap": "^7.2"
     },
     "require-dev": {

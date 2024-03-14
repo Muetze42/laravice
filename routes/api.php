@@ -88,6 +88,8 @@ Route::middleware([Authenticate::using('sanctum'), CheckAbilityMiddleware::class
             ->group(function () {
                 Route::post('dom-pdf', 'domPdf')
                     ->name('dom-pdf');
+                Route::post('spatie-laravel-pdf', 'spatieLaravelPdf')
+                    ->name('spatie-laravel-pdf');
             });
     });
 });

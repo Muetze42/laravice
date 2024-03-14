@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Pdf;
 
 use App\Http\Controllers\AbstractController;
-use Illuminate\Http\Request;
 use Dompdf\Dompdf;
+use Illuminate\Http\Request;
+
+use function Spatie\LaravelPdf\Support\pdf;
 
 class CreateController extends AbstractController
 {
@@ -23,5 +25,17 @@ class CreateController extends AbstractController
         $dompdf->stream(
             $request->input('filename', 'document.pdf')
         );
+    }
+
+    public function spatieLaravelPdf(Request $request)
+    {
+        $request->validate([
+            'html' => 'required|string',
+            'filename' => 'nullable|string',
+        ]);
+
+        return pdf()
+            ->html($request->input('html'))
+            ->name($request->input('filename', 'document.pdf'));
     }
 }
