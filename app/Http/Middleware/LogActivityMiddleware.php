@@ -19,15 +19,15 @@ class LogActivityMiddleware
                 fn () => $user->forceFill(['active_at' => now()])->save()
             );
 
-            /* @var \App\Models\ApiRequest $apiRequest */
-            $apiRequest = $user->apiRequests()->create([
-                'path' => $request->path(),
-                'method' => $request->method(),
-                'user_agent' => $request->userAgent(),
-                'ip' => $request->ip(),
-            ]);
-
             if ($token = $user->currentAccessToken()) {
+                /* @var \App\Models\ApiRequest $apiRequest */
+                $apiRequest = $user->apiRequests()->create([
+                    'path' => $request->path(),
+                    'method' => $request->method(),
+                    'user_agent' => $request->userAgent(),
+                    'ip' => $request->ip(),
+                ]);
+
                 $apiRequest->token()->associate($token)->save();
             }
         }

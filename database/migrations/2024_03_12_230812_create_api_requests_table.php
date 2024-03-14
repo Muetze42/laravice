@@ -16,9 +16,9 @@ return new class () extends Migration
         Schema::create('api_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->foreignIdFor(PersonalAccessToken::class)->nullable();
+            $table->foreignIdFor(PersonalAccessToken::class, 'token_id')->nullable();
             $table->string('path');
-            $table->char('method', 7);
+            $table->string('method', 7);
             $table->string('user_agent');
             $table->string('ip')->nullable();
             $table->timestamp('created_at')->useCurrent();

@@ -82,6 +82,7 @@ namespace App\Models{
  * @property string $email
  * @property mixed $password
  * @property bool $is_admin
+ * @property array|null $abilities
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $active_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -96,6 +97,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAbilities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActiveAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)

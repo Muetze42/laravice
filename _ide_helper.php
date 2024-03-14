@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 11.0.3.
+ * Generated for Laravel 11.0.5.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3532,7 +3532,7 @@ namespace Illuminate\Support\Facades {
          * @param array $config
          * @return \Illuminate\Cache\Repository 
          * @static 
-         */        public static function repository($store, $config)
+         */        public static function repository($store, $config = [])
         {
                         /** @var \Illuminate\Cache\CacheManager $instance */
                         return $instance->repository($store, $config);
@@ -12762,6 +12762,29 @@ namespace Illuminate\Support\Facades {
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
         }
+                    /**
+         * 
+         *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
+         * @param mixed $ignoreQuery
+         * @static 
+         */        public static function hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
+        {
+                        return \Illuminate\Http\Request::hasValidRelativeSignatureWhileIgnoring($ignoreQuery);
+        }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $key
+         * @param mixed $enumClass
+         * @param mixed|null $default
+         * @return mixed|null 
+         * @static 
+         */        public static function enumD($key, $enumClass, $default)
+        {
+                        return \Illuminate\Http\Request::enumD($key, $enumClass, $default);
+        }
             }
             /**
      * 
@@ -13014,6 +13037,20 @@ namespace Illuminate\Support\Facades {
          */        public static function flushMacros()
         {
                         \Illuminate\Routing\ResponseFactory::flushMacros();
+        }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $message
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */        public static function error($message, $status = 500, $headers = [], $options = 192)
+        {
+                        return \Illuminate\Routing\ResponseFactory::error($message, $status, $headers, $options);
         }
             }
             /**
@@ -16026,6 +16063,17 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->macroCall($method, $parameters);
         }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $path
+         * @return string 
+         * @static 
+         */        public static function relativePath($path)
+        {
+                        return \Illuminate\Filesystem\FilesystemAdapter::relativePath($path);
+        }
             }
             /**
      * 
@@ -18243,6 +18291,71 @@ namespace Illuminate\Http {
          */        public static function hasValidSignatureWhileIgnoring($ignoreQuery = [], $absolute = true)
         {
                         return \Illuminate\Http\Request::hasValidSignatureWhileIgnoring($ignoreQuery, $absolute);
+        }
+                    /**
+         * 
+         *
+         * @see \Illuminate\Foundation\Providers\FoundationServiceProvider::registerRequestSignatureValidation()
+         * @param mixed $ignoreQuery
+         * @static 
+         */        public static function hasValidRelativeSignatureWhileIgnoring($ignoreQuery = [])
+        {
+                        return \Illuminate\Http\Request::hasValidRelativeSignatureWhileIgnoring($ignoreQuery);
+        }
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $key
+         * @param mixed $enumClass
+         * @param mixed|null $default
+         * @return mixed|null 
+         * @static 
+         */        public static function enumD($key, $enumClass, $default)
+        {
+                        return \Illuminate\Http\Request::enumD($key, $enumClass, $default);
+        }
+            }
+    }
+
+namespace Illuminate\Routing {
+            /**
+     * 
+     *
+     */        class ResponseFactory {
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $message
+         * @param int $status
+         * @param array $headers
+         * @param int $options
+         * @return \Illuminate\Http\JsonResponse 
+         * @static 
+         */        public static function error($message, $status = 500, $headers = [], $options = 192)
+        {
+                        return \Illuminate\Routing\ResponseFactory::error($message, $status, $headers, $options);
+        }
+            }
+    }
+
+namespace Illuminate\Filesystem {
+            /**
+     * 
+     *
+     * @mixin \League\Flysystem\FilesystemOperator
+     */        class FilesystemAdapter {
+                    /**
+         * 
+         *
+         * @see \App\Providers\AppServiceProvider::bootMacros()
+         * @param string $path
+         * @return string 
+         * @static 
+         */        public static function relativePath($path)
+        {
+                        return \Illuminate\Filesystem\FilesystemAdapter::relativePath($path);
         }
             }
     }

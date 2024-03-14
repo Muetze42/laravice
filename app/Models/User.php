@@ -43,9 +43,20 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'abilities' => 'json',
             'active_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'bool',
         ];
+    }
+
+    /**
+     * Perform any actions required after the model boots.
+     */
+    public static function booted(): void
+    {
+        static::saving(function (User $user) {
+            $user->abilities = $user->is_admin ? ['*'] : minimize_abilities($user->abilities);
+        });
     }
 }

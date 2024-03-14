@@ -44,6 +44,18 @@ return [
             'throw' => false,
         ],
 
+        'media' => [
+            'driver' => 'local',
+            'root' => storage_path('media'),
+            'throw' => false,
+        ],
+
+        'temporary' => [
+            'driver' => 'local',
+            'root' => storage_path('temp'),
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

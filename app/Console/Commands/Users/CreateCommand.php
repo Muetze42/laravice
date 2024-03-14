@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Users;
 
 use App\Models\User;
+use App\Rules\AbilitiesRule;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -36,6 +37,7 @@ class CreateCommand extends Command
     protected array $attributes = [
         'email' => null,
         'is_admin' => false,
+        'abilities' => ['*'],
     ];
 
     /**
@@ -46,6 +48,7 @@ class CreateCommand extends Command
         $this->components->info($this->description);
         $this->determineEmail();
         $this->determineIsAdminState();
+        $this->determineAbilities();
         $this->finalize();
     }
 
@@ -58,9 +61,51 @@ class CreateCommand extends Command
         $this->attributes['password'] = $password;
         User::forceCreate($this->attributes);
 
-        $this->components->info(
-            sprintf('The user %s was created with the password %s', $this->attributes['email'], $password)
+        $this->components->info('User created successfully.');
+        $this->table(
+            [],
+            [
+                ['Email', $this->attributes['email']],
+                ['Password', $this->attributes['password']],
+                ['Administrator', $this->attributes['is_admin'] ? 'Yes' : 'No'],
+                ['Abilities', implode(', ', $this->attributes['abilities'])],
+            ]
         );
+    }
+
+    /**
+     * Determine the abilities for the User.
+     */
+    protected function determineAbilities(): void
+    {
+        if ($this->attributes['is_admin']) {
+            $this->attributes['abilities'] = ['*'];
+            $this->info('User is an administrator, all abilities will be granted.');
+
+            return;
+        }
+
+        $this->call('app:list-grouped-abilities');
+
+        $this->attributes['abilities'] = $this->ask(
+            'Abilities (comma separated)',
+            implode(',', $this->attributes['abilities'])
+        );
+
+        $this->attributes['abilities'] = array_map('trim', explode(',', $this->attributes['abilities']));
+
+        $validator = Validator::make(
+            ['abilities' => $this->attributes['abilities']],
+            ['abilities' => ['nullable', 'array', new AbilitiesRule()]]
+        );
+
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
+                $this->error($error);
+            }
+
+            $this->determineAbilities();
+        }
     }
 
     /**

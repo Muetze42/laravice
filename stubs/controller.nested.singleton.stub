@@ -7,7 +7,7 @@ use {{ rootNamespace }}Http\Controllers\AbstractController;
 use Illuminate\Http\Request;
 use {{ namespacedParentModel }};
 
-class {{ class }} extends Controller
+class {{ class }} extends AbstractController
 {
     /**
      * Show the form for creating the new resource.
