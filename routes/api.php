@@ -6,6 +6,7 @@ use App\Http\Controllers\Images\ConvertController;
 use App\Http\Controllers\Images\ManipulationController;
 use App\Http\Controllers\Images\RemoveBackgroundController;
 use App\Http\Controllers\Images\WatermarkController;
+use App\Http\Controllers\Pdf\CreateController;
 use App\Http\Controllers\PsalmController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
@@ -73,6 +74,20 @@ Route::middleware([Authenticate::using('sanctum'), CheckAbilityMiddleware::class
             ->group(function () {
                 Route::post('to-wep-p-with-imagick', 'toWepPWithImagick')
                     ->name('to-wep-p-with-imagick');
+            });
+    });
+    /**
+     * PDFs.
+     */
+    Route::prefix('pdf')->name('pdf.')->group(function () {
+        /**
+         * Create.
+         */
+        Route::prefix('create')->name('create.')
+            ->controller(CreateController::class)
+            ->group(function () {
+                Route::post('dom-pdf', 'domPdf')
+                    ->name('dom-pdf');
             });
     });
 });
