@@ -7,30 +7,32 @@ A Laravel Web Service App with various services for documents (PDF, Excel etc.),
 WIP: Restart with Laravel 11.  
 Minimal application structure should have minimal configurations.
 
+Postman Collection: [Watch on postman.com](https://www.postman.com/muetzeofficial/workspace/norman-huth/collection/7458133-3d9a154d-cfd4-42fd-8cd0-8603f91620c6?action=share&creator=7458133)
+
 ### Todos / Roadmap
 
 - [ ] PDF Generator
     - [ ] [DomPDF](https://github.com/barryvdh/laravel-dompdf)
     - [ ] [Laravel-pdf](https://spatie.be/docs/laravel-pdf)
 - [ ] Image Tools
-    - [ ] [Resizing images](https://spatie.be/docs/image/image-manipulations/resizing-images)
+    - [X] [Resizing images](https://spatie.be/docs/image/image-manipulations/resizing-images)
     - [ ] [Optimizing images](https://spatie.be/docs/image/image-manipulations/optimizing-images) / [image-optimizer](https://github.com/spatie/image-optimizer)
-    - [ ] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
-    - [ ] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
-    - [ ] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
-    - [ ] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
+    - [X] [Adjustments](https://spatie.be/docs/image/image-manipulations/adjustments)
+    - [X] [Image canvas](https://spatie.be/docs/image/image-manipulations/image-canvas)
+    - [X] [Effects](https://spatie.be/docs/image/image-manipulations/effects)
+    - [X] [Watermarks](https://spatie.be/docs/image/image-manipulations/watermarks)
     - [ ] [Text on images](https://github.com/Muetze42/gd-text)
     - [ ] Create Square Images
-    - [ ] WebP Converter
+    - [X] WebP Converter
     - [ ] Remove Background
         - [ ] [Python Tool 1](https://github.com/danielgatis/rembg)
         - [ ] [Python Tool 2](https://github.com/nadermx/backgroundremover)
-        - [ ] [Node.js Tool](https://github.com/imgly/background-removal-js)
+        - [X] [Node.js Tool](https://github.com/imgly/background-removal-js)
         - find alternatives
 - [ ] [Convert HTML to an image, PDF or string](https://spatie.be/docs/browsershot/v4/introduction)
-- [ ] [Psalm](https://psalm.dev/) Return type Generator
+- [X] [Psalm](https://psalm.dev/) Return type Generator
 - [ ] XML Converter
-- [ ] Inspire :)
+- [X] Inspire :)
 
 ## Not sure / Effort? / Possible? / Useful as service?
 

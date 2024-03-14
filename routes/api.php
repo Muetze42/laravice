@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Images\ConvertController;
+use App\Http\Controllers\Images\ManipulationController;
 use App\Http\Controllers\Images\RemoveBackgroundController;
+use App\Http\Controllers\Images\WatermarkController;
 use App\Http\Controllers\PsalmController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
@@ -43,6 +46,33 @@ Route::middleware([Authenticate::using('sanctum'), CheckAbilityMiddleware::class
             ->group(function () {
                 Route::post('imgly-background-removal-node', 'imglyBackgroundRemovalNode')
                     ->name('imgly-background-removal-node');
+            });
+        /**
+         * Manipulation.
+         */
+        Route::prefix('manipulation')->name('manipulation.')
+            ->controller(ManipulationController::class)
+            ->group(function () {
+                Route::post('spate-image', 'spateImage')
+                    ->name('spate-image');
+            });
+        /**
+         * Watermark.
+         */
+        Route::prefix('watermark')->name('watermark.')
+            ->controller(WatermarkController::class)
+            ->group(function () {
+                Route::post('spate-image', 'spateImage')
+                    ->name('spate-image');
+            });
+        /**
+         * Convert.
+         */
+        Route::prefix('convert')->name('convert.')
+            ->controller(ConvertController::class)
+            ->group(function () {
+                Route::post('to-wep-p-with-imagick', 'toWepPWithImagick')
+                    ->name('to-wep-p-with-imagick');
             });
     });
 });
