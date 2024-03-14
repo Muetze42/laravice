@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 
 if (!function_exists('ext_by_mime')) {
     /**
@@ -53,5 +56,20 @@ if (!function_exists('minimize_abilities')) {
         sort($abilities);
 
         return $abilities;
+    }
+}
+
+if (!function_exists('abort_with_json')) {
+    function abort_with_json(array $data = [], ?string $message = null, int $status = 401)
+    {
+        if (!$message) {
+            $message = Response::$statusTexts[$status];
+        }
+
+        $data = array_merge(['message' => $message], $data);
+
+        throw new HttpResponseException(
+            new JsonResponse($data, $status)
+        );
     }
 }

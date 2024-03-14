@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\Models\HasApiRequestsTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -14,6 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use HasApiTokens;
     use HasApiRequestsTrait;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'abilities',
     ];
 
     /**

@@ -20,8 +20,25 @@ class Ability
                     ['auth:sanctum', 'Illuminate\Auth\Middleware\Authenticate:sanctum']
                 ))
             )->map(
-                fn (Route $route) => str_replace('/', ':', trim($route->uri(), '/'))
-            )->values()->toArray();
+                function (Route $route): string {
+                    return self::format($route);
+                }
+            )->values()->unique()->toArray();
+    }
+
+    public static function format(Route $route): string
+    {
+        $ability = '';
+        $parts = explode('/', trim($route->uri(), '/'));
+
+        foreach ($parts as $part) {
+            if ($ability) {
+                $ability .= ':';
+            }
+            $ability .= str_starts_with($part, '{') ? $route->getActionMethod() : $part;
+        }
+
+        return $ability;
     }
 
     /**

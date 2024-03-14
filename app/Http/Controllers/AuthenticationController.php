@@ -52,6 +52,7 @@ class AuthenticationController extends AbstractController
         $accessToken = $token->accessToken;
 
         return new JsonResource([
+            'message' => 'Please note your token. It will not be shown again.',
             'token' => $token->plainTextToken,
             'name' => $accessToken->name,
             'expires_at' => $accessToken->expires_at,

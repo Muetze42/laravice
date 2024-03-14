@@ -2,9 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\Ability;
 use Closure;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,7 +26,7 @@ class CheckAbilityMiddleware
      */
     protected function authorize(Request $request): void
     {
-        $ability = str_replace('/', ':', trim($request->route()->uri(), '/'));
+        $ability = Ability::format($request->route());
 
         if (
             $this->hasAbility($ability, $request->user()->abilities) &&
@@ -36,15 +35,12 @@ class CheckAbilityMiddleware
             return;
         }
 
-        $response = new JsonResponse([
-            'message' => Response::$statusTexts[Response::HTTP_UNAUTHORIZED],
+        abort_with_json([
             'reason' => 'Missing ability to perform this action.',
             'required_ability' => $ability,
             'token_abilities' => $request->user()->currentAccessToken()->abilities,
             'user_abilities' => $request->user()->abilities,
-        ], Response::HTTP_UNAUTHORIZED);
-
-        throw new HttpResponseException($response);
+        ]);
     }
 
     protected function hasAbility(string $ability, array $abilities): bool

@@ -17,7 +17,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $user_id
- * @property int|null $personal_access_token_id
+ * @property int|null $token_id
  * @property string $path
  * @property string $method
  * @property string $user_agent
@@ -33,7 +33,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest whereMethod($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest wherePath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest wherePersonalAccessTokenId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest whereTokenId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest whereUserAgent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ApiRequest whereUserId($value)
  */
@@ -87,6 +87,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $active_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ApiRequest> $apiRequests
  * @property-read int|null $api_requests_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -96,16 +97,20 @@ namespace App\Models{
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAbilities($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereActiveAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereIsAdmin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
  */
 	class User extends \Eloquent {}
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class LogActivityMiddleware
@@ -15,9 +15,9 @@ class LogActivityMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if ($user = $request->user()) {
-            User::withoutTimestamps(
-                fn () => $user->forceFill(['active_at' => now()])->save()
-            );
+            DB::table('users')
+                ->where('id', $user->getKey())
+                ->update(['active_at' => now()]);
 
             if ($token = $user->currentAccessToken()) {
                 /* @var \App\Models\ApiRequest $apiRequest */

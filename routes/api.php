@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Images\RemoveBackgroundController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhoamiController;
 use App\Http\Middleware\CheckAbilityMiddleware;
 use Illuminate\Auth\Middleware\Authenticate;
@@ -18,6 +19,9 @@ Route::post('authenticate', [AuthenticationController::class, 'authenticate'])
 
 Route::middleware([Authenticate::using('sanctum'), CheckAbilityMiddleware::class])->group(function () {
     Route::get('whoami', WhoamiController::class)->name('whoami');
+
+    Route::apiResource('users', UserController::class)->withTrashed();
+    Route::post('users/{user}', [UserController::class, 'restore'])->name('users.restore')->withTrashed();
 
     /**
      * Images.
